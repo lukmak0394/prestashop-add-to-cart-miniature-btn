@@ -1,9 +1,10 @@
+
 <div class="inactive-btn-wrapper">
-    <button class="btn add-to-cart custom-btn disabled" type="submit">
-    {if $id_product_attribute ne 0 || $customization ne 0}
-    SELECT VARIANT
+    {if $id_product_attribute ne 0}
+        <a href="{$product_url}" target="_blank" class="btn btn-secondary custom-btn">Select variant</a>
+    {elseif $customization ne 0}
+        <a href="{$product_url}" target="_blank" class="btn btn-secondary custom-btn">Customize</a>
     {else}
-    ADD TO CART
+        <button class="btn custom-btn disabled">Add to cart</button>
     {/if}
-    </button>
 </div>

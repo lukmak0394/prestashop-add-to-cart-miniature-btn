@@ -27,10 +27,9 @@
 */
 
 $('.custom-btn').click((e) => {
-    // Value of product id input
+
     const productId = $(e.target).prev().val();
 
-    // Sent product id with post ajax request
     $.ajax({
         type: "POST",
         url: controller_url,
@@ -39,6 +38,7 @@ $('.custom-btn').click((e) => {
         },
         success: (res) => {
             let jsonData = JSON.parse(res);
+            // False - after 1st click (add product) response will be false and I wanted to block button after 1st use
             if (jsonData === false) {
                 $(e.target).parent().removeAttr('action');  
                 $(e.target).removeClass("btn-primary").addClass("disabled");

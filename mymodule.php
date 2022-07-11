@@ -236,18 +236,23 @@ class Mymodule extends Module
         $productQty = $params['product']['quantity'];
         $idProductAttribute = $params['product']['id_product_attribute'];
         $customization = $params['product']['customizable'];
+        $productUrl = $params['product']['link'];
     
         $this->context->smarty->assign(
             [
                 'id_product' => $idProduct,
                 'id_product_attribute' => $idProductAttribute,
                 'customization' => $customization,
+                'product_url' => $productUrl,
             ]
         );
 
+        // Firstly check if product is in cart - if yes - return inactive button
+        // If not - check if qty > 0 and it has no attribute and customization option
         if(Context::getContext()->cart->containsProduct($idProduct)) {
             return $this->display(__FILE__,'inactiveButton.tpl');
         } else {    
+            // Check condition - add to cart should only be visible for available product without variants / customization
             if($productQty != 0 && $idProductAttribute == 0 && $customization == 0) {
                 return $this->display(__FILE__, 'addProduct.tpl');  
             } else {
