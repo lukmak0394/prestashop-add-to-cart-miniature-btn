@@ -41,7 +41,8 @@ $('.custom-btn').click((e) => {
             // False - after 1st click (add product) response will be false and I wanted to block button after 1st use
             if (jsonData === false) {
                 $(e.target).parent().removeAttr('action');  
-                $(e.target).removeClass("btn-primary").addClass("disabled");
+                $(e.target).hasClass('btn-primary') ? $(e.target).removeClass("btn-primary").addClass("disabled") : false;
+                
             }
         }
     });
